@@ -1,5 +1,15 @@
 package org.register.Services;
 
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
+
+import java.util.Properties;
+
 public class NotificationService {
     private static final String username = "baxtiyorr545@gmail.com";
     private static final String password = "nfxf dbqf xqzc hhvs";
