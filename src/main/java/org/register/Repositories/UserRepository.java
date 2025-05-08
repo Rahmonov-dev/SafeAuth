@@ -24,7 +24,7 @@ public class UserRepository {
         }
     }
 
-    private List<User> readUser() {
+    public List<User> readUser() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(USER_FILE))) {
             List<User> users = (List<User>) ois.readObject();
             return users;
