@@ -4,6 +4,7 @@ import org.register.Models.Enum.Gender;
 import org.register.Services.UserService;
 
 import static org.register.Main.inputStr;
+import static org.register.Services.NotificationService.sendEmail;
 
 public class UserController {
     public static void registerUser() {
@@ -55,6 +56,7 @@ public class UserController {
 
         if (UserService.addUser(username, email, phone, password, gender)) {
             System.out.println("Foydalanuvchi muvaffaqiyatli ro'yxatga olindi!");
+            sendEmail(email);
         } else {
             System.out.println("Foydalanuvchini ro'yxatga olishda xatolik yuz berdi.");
         }

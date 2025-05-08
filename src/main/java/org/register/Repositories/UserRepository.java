@@ -10,16 +10,18 @@ public class UserRepository {
     public static final String USER_FILE = "user.txt";
 
     public boolean saveUser(User user) {
-        List<User> users = new ArrayList<User>();
+        List<User> users = readUser();
         users.add(user);
         return writeUser(users);
     }
+
 
     private boolean writeUser(List<User> users) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(USER_FILE))) {
             oos.writeObject(users);
             return true;
         } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
     }

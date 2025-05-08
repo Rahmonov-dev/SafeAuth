@@ -15,13 +15,22 @@ public class UserService {
     private static final Pattern PHONENUMBER_PATTERN = Pattern.compile("^\\+998(90|91|93|94|95|97|98|99|33|88|77)\\d{7}$");
 
     public UserService(UserRepository userRepository) {
-        UserService.userRepository = UserService.userRepository;
+        UserService.userRepository = userRepository;
     }
 
     public static boolean addUser(String username, String email, String phone, String password, Gender gender) {
-        User user = new User(username, email, phone, password, gender);
-        return userRepository.saveUser(user);
+        if (isValidUsername(username) && isValidEmail(email) && isValidPhoneNumber(phone) && isValidPassword(password) && isValidGender(gender)) {
+            User user = new User(username, email, phone, password, gender);
+            boolean isSaved = userRepository.saveUser(user);
+            if (!isSaved) {
+                System.out.println("Foydalanuvchi saqlashda xatolik yuz berdi.");
+            }
+            return isSaved;
+        }
+        System.out.println("Kiritilgan ma'lumotlar noto'g'ri.");
+        return false;
     }
+
 
 
     public static User validateUser(String email, String password) {
